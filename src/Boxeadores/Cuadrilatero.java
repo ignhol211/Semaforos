@@ -14,6 +14,7 @@ public class Cuadrilatero {
     public static void addParticipante(Luchador luchador) {
         try {
             System.out.println("Ha entrado al cuadrilatero el boxeador "+luchador.getName());
+            luchador1 = luchador;
             semaphore.acquire();
             if (luchador1 != null && luchador2 != null)
                 luchar(luchador1,luchador2);
@@ -27,8 +28,9 @@ public class Cuadrilatero {
         try {
             luchador1.sleep(2000);
             luchador2.sleep(2000);
-            if (luchador1.getId() > luchador2.getId())
-                System.out.println("El luchador "+luchador1.getName()+" ha ganado");
+            if (luchador1.getId() > luchador2.getId()) {
+                System.out.println("El luchador " + luchador1.getName() + " ha ganado");
+            }
             else
                 System.out.println("El luchador "+luchador2.getName()+" ha ganado");
         } catch (InterruptedException e) {
