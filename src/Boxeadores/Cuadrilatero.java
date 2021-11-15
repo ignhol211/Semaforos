@@ -13,28 +13,40 @@ public class Cuadrilatero {
 
     public static void addParticipante(Luchador luchador) {
         try {
-            System.out.println("Ha entrado al cuadrilatero el boxeador "+luchador.getName());
-            luchador1 = luchador;
+
+            if(luchador1 == null)
+                luchador1 = luchador;
+            else
+                luchador2 = luchador;
+
             semaphore.acquire();
             if (luchador1 != null && luchador2 != null)
                 luchar(luchador1,luchador2);
-            semaphore.release();
-            System.out.println("Ha salido del cuadrilatero el boxeador "+luchador.getName());
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
     public static void luchar(Luchador luchador1,Luchador luchador2){
+        System.out.println("Han entrado al cuadrilátero: "+luchador1.getName()+" y "+luchador2.getName());
+
+        Random r = new Random();
+
         try {
-            luchador1.sleep(2000);
-            luchador2.sleep(2000);
-            if (luchador1.getId() > luchador2.getId()) {
-                System.out.println("El luchador " + luchador1.getName() + " ha ganado");
+            Thread.sleep(1);
+            if(r.nextBoolean()){
+                System.out.println("El "+luchador1.getName()+" ha perdido");
+                luchador1 = null;
+                semaphore.release();
             }
-            else
-                System.out.println("El luchador "+luchador2.getName()+" ha ganado");
+            else {
+                System.out.println("El " + luchador2.getName() + " ha perdido");
+                luchador2 = null;
+                semaphore.release();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 }
