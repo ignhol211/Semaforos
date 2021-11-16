@@ -47,8 +47,6 @@ public class Cuadrilatero {
             System.out.println("El " + luch2.getName() + " ha perdido");
             luchador2=null;
         }
-
         semaphore.release();
-
     }
 }
