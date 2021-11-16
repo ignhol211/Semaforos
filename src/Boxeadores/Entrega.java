@@ -1,3 +1,4 @@
+/*
 package Boxeadores;
 
 import java.util.Random;
@@ -69,3 +70,4 @@ class Cuadrilatero {
         semaphore.release(1);
     }
 }
+ */
